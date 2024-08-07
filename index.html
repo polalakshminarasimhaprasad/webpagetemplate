@@ -1,0 +1,1961 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>ZigZag</title>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+      }
+
+      html,
+      body,
+      button,
+      input,
+      select,
+      textarea {
+        font-family: Arial;
+        font-size: 12px;
+        color: #8c806e;
+      }
+
+      li {
+        font-size: 13px;
+        margin: 5px 0px 10px 0px;
+      }
+
+      pre {
+        overflow: auto;
+      }
+
+      blockquote:before,
+      blockquote:after,
+      a img {
+        border: 0;
+      }
+
+      a,
+      input {
+        outline: none;
+      }
+
+      a:hover {
+        text-decoration: none;
+      }
+
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 5px 0px 15px 0px;
+        clear: both;
+        font-weight: lighter;
+      }
+
+      h1 {
+        font-size: 36px;
+      }
+
+      h2 {
+        font-size: 30px;
+      }
+
+      h3 {
+        font-size: 24px;
+      }
+
+      h4 {
+        font-size: 20px;
+      }
+
+      h5 {
+        font-size: 18px;
+      }
+
+      h6 {
+        font-size: 14px;
+      }
+
+      p {
+        font-size: 13px;
+        margin: 5px 0px 15px 0px;
+      }
+
+      img {
+        border: 0;
+        height: auto;
+        max-width: 100%;
+        display: block;
+      }
+
+      figure {
+        margin: 0;
+      }
+
+      input:focus,
+      textarea:focus {
+        outline: none;
+        background-color: #fff;
+        border: 1px solid #c1c1c1;
+        border: 1px solid rgba(51, 51, 51, 0.3);
+        color: #333;
+      }
+
+      input:focus,
+      select:focus {
+        outline: 2px solid #c1c1c1;
+        outline: 2px solid rgba(51, 51, 51, 0.3);
+      }
+
+      .clear {
+        clear: both;
+        height: 0px;
+        overflow: hidden;
+      }
+      .DesignHolder {
+        position: relative;
+        display: block;
+        width: 100%;
+        min-height: 100%;
+      }
+      .LayoutFrame {
+        margin: 0 auto;
+        width: 100%;
+        display: block;
+      }
+      body {
+        background: #fff;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .header {
+        padding: 75px 0px 145px 0px;
+        width: 100%;
+        background: url(./img/header-bg.png) top center no-repeat;
+        background-size: cover;
+      }
+
+      .header .Center {
+        max-width: 1098px;
+        margin: auto;
+        position: relative;
+      }
+
+      .header .arrow {
+        position: absolute;
+        bottom: -146px;
+        right: -2px;
+      }
+
+      .Top_Bar {
+        padding-bottom: 147px;
+        width: 100%;
+      }
+
+      .Top_Bar .site-logo {
+        padding-left: 1px;
+        width: 285px;
+        float: left;
+      }
+
+      .Top_Bar .site-logo a {
+        display: block;
+      }
+      .Navigation {
+        margin-right: -3px;
+        position: relative;
+        width: 66.5%;
+        float: right;
+        background: url(./img/menu-bg.png) top center no-repeat;
+      }
+
+      .Navigation ul {
+        list-style: none;
+        margin: 0px;
+      }
+
+      .Navigation li {
+        float: left;
+        margin: 0px;
+        line-height: 80px;
+      }
+
+      .Navigation li a {
+        padding: 0px 0px 0px 80px;
+        font-size: 14px;
+        color: #fff;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+        display: block;
+        text-decoration: none;
+        text-transform: uppercase;
+      }
+
+      .Navigation li a:hover,
+      .Navigation li.active a {
+        background: url(./img/menu-left-hover.png) left center no-repeat;
+      }
+
+      .Navigation li a:hover span,
+      .Navigation li.active a span {
+        display: block;
+        background: url(./img/menu-right-hover.png) right center no-repeat;
+      }
+
+      .Navigation li a span {
+        padding: 0px 127px 0px 62px;
+      }
+
+      .Navigation li.gap {
+        margin-left: -80px;
+      }
+
+      .Navigation li.gap a span {
+        padding: 0px 134px 0px 18px;
+      }
+
+      .Navigation li.gap1 a span {
+        padding: 0px 138px 0px 11px;
+      }
+
+      .Navigation li:last-child a {
+        padding-right: 0px;
+      }
+
+      .Navigation .triangle {
+        position: absolute;
+        top: 79px;
+        left: 0px;
+      }
+
+      .Product_sec {
+        width: 100%;
+        overflow: hidden;
+      }
+
+      .Product_sec ul {
+        list-style: none;
+        margin: 0px;
+      }
+
+      .Product_sec li {
+        float: none;
+        padding: 0px;
+        margin: 0px 0px 82px 0px;
+        width: 100%;
+        display: inline-block;
+      }
+
+      .Product_sec li:last-child {
+        margin-bottom: 0px;
+      }
+
+      .Product_sec li .right {
+        width: 63.75%;
+        float: right;
+      }
+
+      .Product_sec li .right .Details {
+        width: 61.2%;
+        float: left;
+        text-align: right;
+      }
+
+      .Product_sec li .Details h3 {
+        padding-right: 6px;
+        font-size: 24px;
+        color: #1d232c;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0px;
+        line-height: 30px;
+      }
+
+      .Product_sec li .Details h3 span {
+        margin: -1px -7px 0px 0px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 300;
+        display: block;
+      }
+
+      .Product_sec li .Details p {
+        padding: 20px 0px 30px 0px;
+        font-size: 14px;
+        color: #8a8a8a;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        margin: 0px;
+        line-height: 20px;
+      }
+
+      .Product_sec li .Details .button {
+        font-size: 14px;
+        color: #fff;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        text-align: center;
+        text-decoration: none;
+        text-transform: uppercase;
+        float: right;
+        background: url(./img/Learn-bg.png) no-repeat;
+        width: 152px;
+        height: 44px;
+        line-height: 43px;
+        display: block;
+      }
+
+      .Product_sec li .img {
+        float: right;
+        width: 234px;
+      }
+
+      .Product_sec li .left {
+        padding-left: 48px;
+        width: 67.1%;
+        float: left;
+      }
+
+      .Product_sec li .left .Details {
+        width: 60%;
+        float: left;
+        text-align: right;
+      }
+
+      .Product_sec li .left .Details h3 {
+        padding-right: 0px;
+        font-size: 24px;
+        color: #1d232c;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0px;
+        line-height: 30px;
+      }
+
+      .Product_sec li .left .Details h3 span {
+        margin: 0px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 300;
+        display: block;
+      }
+
+      .Product_sec li .left .img {
+        width: 237px;
+        padding: 8px 0px 0px 0px;
+      }
+
+      #Container {
+        overflow: hidden;
+        width: 100%;
+      }
+
+      .Middle_sec {
+        width: 100%;
+        background-color: #222a36;
+
+        background-image: url(./img/sollication-bg.jpg);
+        background-position: top center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      .Middle_sec .Center {
+        max-width: 1098px;
+        margin: auto;
+        overflow: hidden;
+      }
+
+      .Middle_sec #Leftside {
+        width: 51%;
+        float: left;
+        position: relative;
+      }
+
+      .Middle_sec #Leftside .Client {
+        width: 374px;
+        text-align: center;
+        padding: 139px 141px 139px 142px;
+        background: url(./img/Client-bg.png) top center no-repeat;
+        margin-top: -1px;
+      }
+
+      .Middle_sec #Leftside .Client img {
+        margin: auto auto 16px;
+        border-radius: 50%;
+      }
+
+      .Middle_sec #Leftside .Client h3 {
+        font-size: 14px;
+        color: #fff;
+        margin: 0px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 600;
+        text-transform: uppercase;
+        font-style: italic;
+      }
+
+      .Middle_sec #Leftside .Client1 {
+        padding: 94px 50px 120px 53px;
+        position: absolute;
+        top: 188px;
+        left: 33.5%;
+        text-align: center;
+        background: url(./img/Client-bg1.png) top center no-repeat;
+        width: 374px;
+      }
+
+      .Middle_sec #Leftside .Client1 img {
+        margin: auto;
+        border-radius: 50%;
+      }
+
+      .Middle_sec #Leftside .Client1 p {
+        padding: 3px 0px 10px 0px;
+        font-size: 14px;
+        color: #fff;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        font-style: italic;
+        margin: 0px;
+        letter-spacing: -0.2px;
+      }
+
+      .Middle_sec #Leftside .Client1 h3 {
+        font-size: 14px;
+        color: #fff;
+        margin: 0px;
+        font-family: "Open Sans", sans-serif;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+
+      .Middle_sec #Leftside .Client2 {
+        padding: 139px 50px 139px 50px;
+        margin: -3px 0px 0px 0px;
+        text-align: center;
+        background: url(./img/Client-bg.png) top center no-repeat;
+        width: 374px;
+      }
+
+      .Middle_sec #Leftside .Client2 img {
+        margin: auto auto 16px;
+        border-radius: 50%;
+      }
+
+      .Middle_sec #Leftside .Client2 p {
+        font-size: 14px;
+        color: #fff;
+        font-family: "Open Sans", sans-serif;
+        font-style: italic;
+      }
+
+      .Middle_sec #Leftside .Client2 h3 {
+        font-size: 14px;
+        color: #fff;
+        margin: 0px;
+        font-family: "Open Sans", sans-serif;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-style: italic;
+      }
+
+      .Middle_sec #Rightside {
+        padding-top: 115px;
+        width: 46.6%;
+        float: right;
+      }
+
+      .Middle_sec #Rightside ul {
+        list-style: none;
+        margin: 0px;
+      }
+
+      .Middle_sec #Rightside li {
+        float: none;
+        padding: 0px 0px 152px 0px;
+        margin: 0px;
+        display: inline-block;
+      }
+
+      .Middle_sec #Rightside li:last-child {
+        padding-bottom: 0px;
+      }
+
+      .Middle_sec #Rightside li .Industrial {
+        padding-top: 4px;
+        float: left;
+      }
+
+      .Middle_sec #Rightside li .Information {
+        width: 54.5%;
+        float: right;
+      }
+
+      .Information a {
+        color: #fff;
+      }
+
+      .Middle_sec #Rightside li .Information h4 {
+        font-size: 24px;
+        color: #00b3ae;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        margin: 0px;
+        text-transform: uppercase;
+        line-height: 28px;
+      }
+
+      .Middle_sec #Rightside li .Information h4 span {
+        display: block;
+        color: #fff;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 300;
+      }
+
+      .Middle_sec #Rightside li .Information p {
+        padding: 18px 0px 16px 0px;
+        font-size: 14px;
+        margin: 0px;
+        color: #8a929f;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+      }
+
+      .Middle_sec #Rightside li .Information ul {
+        list-style: none;
+      }
+
+      .Middle_sec #Rightside li .Information li {
+        float: left;
+        padding: 0px;
+        margin: 0px 12px 0px 0px;
+      }
+
+      .Middle_sec #Rightside li .Information li a {
+        font-size: 15px;
+        background: #1c77c6;
+        color: #fff;
+        width: 28px;
+        height: 28px;
+        display: block;
+        text-align: center;
+        line-height: 28px;
+        text-decoration: none;
+      }
+
+      .Middle_sec #Rightside li .Information li a .fa-twitter {
+        font-size: 15px;
+        width: 28px;
+        height: 28px;
+        display: block;
+        line-height: 28px;
+        background: #00bff0;
+      }
+
+      .Middle_sec #Rightside li .Information li a .fa-rss {
+        font-size: 15px;
+        width: 28px;
+        height: 28px;
+        display: block;
+        line-height: 28px;
+        background: #ffb100;
+      }
+
+      .Contact_sec {
+        padding: 100px 0px 0px 0px;
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        height: 500px;
+        z-index: 9;
+      }
+
+      .Contactside {
+        width: 100%;
+        overflow: hidden;
+        position: absolute;
+        top: 0px;
+        background: url(./img/contact-bg2.png) top center no-repeat;
+        background-size: cover;
+        height: 555px;
+      }
+
+      .Contact_sec .Center {
+        max-width: 1227px;
+        margin: auto;
+        position: relative;
+      }
+
+      .Contact_sec .Form {
+        width: 45.1%;
+        position: absolute;
+        top: 88px;
+        right: 22.8%;
+        margin: 0px;
+      }
+
+      .Contact_sec .Form h3 {
+        padding-left: 16px;
+        font-size: 24px;
+        color: #2a3241;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 0px;
+      }
+
+      .Contact_sec .Form h3 span {
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+      }
+
+      .Contact_sec .Form fieldset {
+        padding: 0px;
+        border: 0px;
+        margin: 22px 0px 0px 0px;
+      }
+
+      .Contact_sec .Form fieldset p {
+        padding: 0px;
+        margin: 0px 0px 19px 0px;
+      }
+
+      .Contact_sec .Form input.field {
+        padding: 0px 50px 0px 100px;
+        font-size: 14px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        color: #fff;
+        border: 0px;
+        background: url(./img/input-img1.png) no-repeat;
+        display: block;
+        width: 483px;
+        height: 51px;
+        border-radius: 0px;
+      }
+
+      .Contact_sec .Form input.field1 {
+        padding: 0px 50px 0px 100px;
+        margin-left: 70px;
+        font-size: 14px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        color: #fff;
+        border: 0px;
+        background: url(./img/input-img1.png) no-repeat;
+        display: block;
+        width: 483px;
+        height: 51px;
+        border-radius: 0px;
+      }
+
+      .Contact_sec .Form textarea {
+        padding: 16px 118px 10px 99px;
+        margin-left: 140px;
+        font-size: 14px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        color: #fff;
+        border: 0px;
+        background: url(./img/textarea-img.png) no-repeat;
+        display: block;
+        width: 553px;
+        height: 121px;
+        resize: none;
+        border-radius: 0px;
+        overflow: hidden;
+      }
+
+      .Contact_sec .Form input.Button {
+        font-size: 14px;
+        margin-left: 280px;
+        color: #fff;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+        text-transform: uppercase;
+        border: 0px;
+        background: url(./img/submit-bg.png) no-repeat;
+        width: 481px;
+        height: 51px;
+        cursor: pointer;
+        border-radius: 0px;
+      }
+
+      .Contact_sec .Form input:focus {
+        outline: medium;
+      }
+
+      footer {
+        width: 100%;
+        background: #222a36;
+      }
+
+      footer .Center {
+        padding: 35px 0px 35px 0px;
+        max-width: 1180px;
+        margin: auto;
+        text-align: center;
+      }
+
+      footer p {
+        font-size: 13px;
+        color: #bbbcbc;
+        margin: 0px;
+        font-family: "Open Sans", sans-serif;
+        font-weight: 400;
+      }
+
+      @media only screen and (min-width: 1025px) and (max-width: 1250px) {
+        .header {
+          width: 100%;
+          padding: 75px 0 140px;
+        }
+
+        .header .Center {
+          width: 100%;
+          padding: 0px 2%;
+        }
+
+        .header .arrow {
+          right: 2%;
+          bottom: -140px;
+        }
+
+        .Top_Bar {
+          width: 100%;
+          padding-bottom: 84px;
+        }
+
+        .Navigation {
+          width: 68.5%;
+          background-size: 100% 100%;
+          margin-right: -11px;
+        }
+
+        .Navigation li a {
+          padding: 0px 0px 0px 80px;
+        }
+
+        .Navigation li a span {
+          padding: 0 114px 0 25px;
+        }
+
+        .Navigation li.gap {
+          margin-left: -81px;
+        }
+
+        .Navigation li.gap1 a span {
+          padding: 0 114px 0 25px;
+        }
+
+        .Navigation li a:hover,
+        .Navigation li.active a {
+          height: 79px;
+        }
+
+        .Navigation li a:hover span,
+        .Navigation li.active a span {
+          height: 79px;
+        }
+
+        .Navigation .triangle {
+          top: 79px;
+          left: -1px;
+        }
+
+        .Product_sec {
+          width: 100%;
+        }
+
+        .Product_sec li .right {
+          width: 71.75%;
+        }
+
+        .Product_sec li .left {
+          width: 71.75%;
+        }
+
+        #Container {
+          width: 100%;
+        }
+
+        .Middle_sec {
+          width: 100%;
+          padding: 0px 0px 0px 0px;
+        }
+
+        .Middle_sec .Center {
+          width: 100%;
+          padding: 0px 2% 0px 0%;
+        }
+
+        .Middle_sec #Leftside .Client1 {
+          left: 37.5%;
+        }
+
+        .Contact_sec {
+          width: 100%;
+        }
+
+        .Contact_sec .Center {
+          width: 100%;
+          padding: 0px 2%;
+        }
+
+        .Contact_sec .Form {
+          width: 48.9%;
+        }
+
+        .Contact_sec .Form fieldset p {
+          margin: 0 0 8px;
+        }
+
+        .Contact_sec .Form input.field {
+          background-size: 88%;
+        }
+
+        .Contact_sec .Form input.field1 {
+          width: 417px;
+          background-size: 100%;
+          margin-left: 58px;
+        }
+
+        .Contact_sec .Form textarea {
+          width: 473px;
+          height: 112px;
+          background-size: 100%;
+          margin-left: 117px;
+        }
+
+        .Contact_sec .Form input.Button {
+          width: 408px;
+          background-size: 100%;
+          margin-left: 238px;
+        }
+
+        .Contact_sec .Center {
+          padding: 98px 6% 98px 6%;
+          width: 100%;
+          background: url(./img/contact-bg2.png) top center no-repeat;
+          background-size: cover;
+          position: relative;
+          right: 0px;
+        }
+
+        footer {
+          width: 100%;
+        }
+
+        footer .Center {
+          width: 100%;
+          padding: 15px 2px;
+        }
+      }
+
+      /* Tablet Portrait size to standard 960 (devices and browsers) */
+      @media only screen and (min-width: 768px) and (max-width: 1024px) {
+        .header {
+          width: 100%;
+          padding: 75px 0 222px;
+          background: url(./img/header-bg1.png) top center;
+          background-size: cover;
+        }
+
+        .header .Center {
+          width: 100%;
+          padding: 0px 6%;
+        }
+
+        .header .arrow {
+          right: 9.8%;
+          bottom: -222px;
+        }
+
+        .Top_Bar {
+          width: 100%;
+          padding-bottom: 165px;
+        }
+
+        .Top_Bar .site-logo {
+          padding-bottom: 75px;
+          width: 100%;
+        }
+
+        .Top_Bar .site-logo img {
+          width: 220px;
+        }
+
+        .Navigation {
+          width: 100%;
+          margin-right: 0px;
+          background: url(./img/menu-bg1.png) repeat-x;
+        }
+
+        .Navigation li {
+          line-height: 62px;
+        }
+
+        .Navigation li a {
+          padding: 0px 83px;
+        }
+
+        .Navigation li.gap {
+          margin-left: 0px;
+        }
+
+        .Navigation li a span {
+          padding: 0 0px;
+        }
+
+        .Navigation li.gap a span {
+          padding: 0px;
+        }
+
+        .Navigation li.gap1 a span {
+          padding: 0px 80px 0px 0px;
+        }
+
+        .Navigation li:last-child a {
+          padding-right: 10px;
+        }
+
+        .Navigation li a:hover,
+        .Navigation li.active a {
+          background: #1f252e;
+          background-image: none;
+        }
+
+        .Navigation .triangle {
+          display: none;
+        }
+
+        .Navigation li a:hover span,
+        .Navigation li.active a span {
+          background: none;
+        }
+
+        .Product_sec {
+          width: 100%;
+        }
+
+        .Product_sec li {
+          padding: 100px 0px 0px 0px;
+          margin: 0px;
+        }
+
+        .Product_sec li .right {
+          width: 100%;
+        }
+
+        .Product_sec li .left {
+          width: 100%;
+        }
+
+        #Container {
+          width: 100%;
+        }
+
+        .Middle_sec {
+          width: 100%;
+          padding: 0px 0px 0px 0px;
+          background: none;
+        }
+
+        .Middle_sec .Center {
+          width: 100%;
+        }
+
+        .Middle_sec #Leftside {
+          padding: 0px 99px;
+          width: 100%;
+          float: none;
+          background: #222a35 url(./img/Client-left-bg.jpg) top center
+            no-repeat;
+        }
+
+        .Middle_sec #Leftside .Client1 {
+          left: 37.2%;
+          top: 186px;
+        }
+
+        .Middle_sec #Rightside {
+          margin-top: -1px;
+          padding: 0px 113px 100px;
+          width: 100%;
+          float: none;
+          background: #2c3545;
+        }
+
+        .Middle_sec #Rightside li {
+          padding: 94px 0px 0px 0px;
+        }
+
+        .Contact_sec {
+          width: 100%;
+          padding: 0px;
+          background: none;
+          height: auto;
+        }
+
+        .Contact_sec .Center {
+          width: 100%;
+          padding: 0px 0% 0px 0%;
+        }
+
+        .Contact_sec .Center {
+          padding: 98px 6% 98px 6%;
+          width: 100%;
+          background: url(./img/contact-bg1.png) top center no-repeat;
+          background-size: cover;
+          position: relative;
+          right: 0px;
+        }
+
+        .Contact_sec .Form {
+          position: relative;
+          right: 0%;
+          top: 0px;
+          width: 100%;
+        }
+
+        .Contact_sec .Form fieldset p {
+          margin: 0 0 8px;
+        }
+
+        .Contact_sec .Form input.field {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          padding: 0px 26px;
+        }
+
+        .Contact_sec .Form input.field1 {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          margin-left: 0px;
+          padding: 0px 26px;
+        }
+
+        .Contact_sec .Form textarea {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          margin-left: 0px;
+          padding: 20px 26px 10px 26px;
+        }
+
+        .Contact_sec .Form input.Button {
+          width: 100%;
+          background: #005a84 !important;
+          background-image: none !important;
+          border-radius: 0px !important;
+          margin-left: 0px;
+        }
+
+        .Contactside {
+          position: relative;
+          background: none;
+          height: auto;
+        }
+
+        footer {
+          width: 100%;
+        }
+
+        footer .center {
+          width: 100%;
+          padding: 15px 2%;
+        }
+      }
+
+      /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+      @media only screen and (min-width: 480px) and (max-width: 767px) {
+        .header {
+          width: 100%;
+          padding: 70px 0px 0px 0px;
+          background: url(./img/header-bg.png) top center no-repeat;
+          background-size: cover;
+        }
+
+        .header .Center {
+          width: 100%;
+          padding: 0px 6%;
+        }
+
+        .header .arrow {
+          right: 0%;
+          bottom: 0px;
+          width: 28%;
+        }
+
+        .Top_Bar {
+          width: 100%;
+          padding-bottom: 165px;
+        }
+
+        .Top_Bar .site-logo {
+          padding-bottom: 75px;
+          width: 100%;
+        }
+
+        .Top_Bar .site-logo img {
+          width: 220px;
+        }
+
+        .Navigation {
+          width: 100%;
+          margin-right: 0px;
+          background: url(./img/menu-bg1.png) repeat-x;
+        }
+
+        .Navigation li {
+          line-height: 62px;
+        }
+
+        .Navigation li a {
+          padding: 0px 42px;
+        }
+
+        .Navigation li.gap {
+          margin-left: 0px;
+        }
+
+        .Navigation li a span {
+          padding: 0 0px;
+        }
+
+        .Navigation li.gap a span {
+          padding: 0px;
+        }
+
+        .Navigation li.gap1 a span {
+          padding: 0px 30px 0px 0px;
+        }
+
+        .Navigation li:last-child a {
+          padding-right: 10px;
+        }
+
+        .Navigation li a:hover,
+        .Navigation li.active a {
+          background: #1f252e;
+          background-image: none;
+        }
+
+        .Navigation .triangle {
+          display: none;
+        }
+
+        .Navigation li a:hover span,
+        .Navigation li.active a span {
+          background: none;
+        }
+
+        .Product_sec {
+          width: 100%;
+          text-align: center;
+        }
+
+        .Product_sec li {
+          padding: 0px 0px 90px 0px;
+          margin: 0px;
+        }
+
+        .Product_sec li .right {
+          width: 100%;
+          float: none;
+        }
+
+        .Product_sec li .right .img {
+          margin: auto;
+          float: none;
+          padding-bottom: 30px;
+        }
+
+        .Product_sec li .right .Details {
+          width: 100%;
+          text-align: center;
+        }
+
+        .Product_sec li .right .Details p {
+          text-align: center;
+        }
+
+        .Product_sec li .Details a {
+          margin: auto;
+          float: none;
+        }
+
+        .Product_sec li .left {
+          width: 100%;
+          float: none;
+          padding-left: 0px;
+        }
+
+        .Product_sec li .left .img {
+          margin: auto;
+          float: none;
+          padding-bottom: 30px;
+        }
+
+        .Product_sec li .left .Details {
+          width: 100%;
+          text-align: center;
+        }
+
+        .Product_sec li .left .Details p {
+          text-align: center;
+        }
+
+        #Container {
+          width: 100%;
+        }
+
+        .Middle_sec {
+          width: 100%;
+          padding: 0px;
+          background: none;
+        }
+
+        .Middle_sec .Center {
+          width: 100%;
+        }
+
+        .Middle_sec #Leftside {
+          padding: 0px 0px;
+          width: 100%;
+          float: none;
+          background: url(./img/Client-left-bg.jpg) top center no-repeat;
+        }
+
+        .Middle_sec #Leftside .Client {
+          margin-top: 0px;
+          padding: 106px 65px 0px 65px;
+          width: 306px;
+          height: 306px;
+          background-size: 100%;
+        }
+
+        .Middle_sec #Leftside .Client2 {
+          padding: 106px 65px 0px 65px;
+          margin: 5px 0 0;
+          width: 306px;
+          height: 306px;
+          background-size: 100%;
+        }
+
+        .Middle_sec #Leftside .Client1 {
+          left: 33.2%;
+          top: 155px;
+          padding: 66px 65px 0px 65px;
+          width: 306px;
+          height: 306px;
+          background-size: 100%;
+        }
+
+        .Middle_sec #Rightside {
+          margin-top: -1px;
+          padding: 0px 6%;
+          width: 100%;
+          text-align: center;
+          float: none;
+          background: #2c3545;
+        }
+
+        .Middle_sec #Rightside li {
+          padding: 94px 0px;
+        }
+
+        .Middle_sec #Rightside li:last-child {
+          padding-bottom: 94px;
+        }
+
+        .Middle_sec #Rightside li .Industrial {
+          float: none;
+        }
+
+        .Middle_sec #Rightside li .Industrial img {
+          margin: auto;
+          padding-bottom: 30px;
+        }
+
+        .Middle_sec #Rightside li .Information {
+          width: 100%;
+          margin: auto;
+        }
+
+        .Middle_sec #Rightside li .Information li {
+          float: none;
+          display: inline-block;
+        }
+
+        .Contact_sec {
+          width: 100%;
+          padding: 0px;
+          background: none;
+          height: auto;
+        }
+
+        .Contact_sec .Center {
+          width: 100%;
+          padding: 0px 0% 0px 0%;
+        }
+
+        .Contact_sec .Center {
+          padding: 98px 6% 98px 6%;
+          width: 100%;
+          background: url(./img/contact-bg.png) top center no-repeat;
+          background-size: cover;
+          position: relative;
+          right: 0px;
+        }
+
+        .Contact_sec .Form {
+          position: relative;
+          right: 0%;
+          top: 0px;
+          width: 100%;
+        }
+
+        .Contact_sec .Form fieldset p {
+          margin: 0 0 8px;
+        }
+
+        .Contact_sec .Form input.field {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          padding: 0px 26px;
+        }
+
+        .Contact_sec .Form input.field1 {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          margin-left: 0px;
+          padding: 0px 26px;
+        }
+
+        .Contact_sec .Form textarea {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          margin-left: 0px;
+          padding: 20px 26px 10px 26px;
+        }
+
+        .Contact_sec .Form input.Button {
+          width: 100%;
+          background: #005a84 !important;
+          background-image: none !important;
+          border-radius: 0px !important;
+          margin-left: 0px;
+        }
+
+        .Contactside {
+          position: relative;
+          background: none;
+          height: auto;
+        }
+
+        footer {
+          width: 100%;
+        }
+
+        footer .Center {
+          width: 100%;
+          padding: 15px 2%;
+        }
+      }
+
+      /* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+      @media only screen and (max-width: 479px) {
+        .header {
+          width: 100%;
+          padding: 70px 0px 0px 0px;
+          background: url(./img/header-bg2.png) top center no-repeat;
+          background-size: cover;
+        }
+
+        .header .Center {
+          width: 100%;
+          padding: 0px 6%;
+        }
+
+        .header .arrow {
+          right: 0%;
+          bottom: 0px;
+          width: 28%;
+        }
+
+        .Top_Bar {
+          width: 100%;
+          padding-bottom: 105px;
+        }
+
+        .Top_Bar .site-logo {
+          padding-bottom: 75px;
+          width: 100%;
+        }
+
+        .Top_Bar .site-logo img {
+          width: 220px;
+        }
+
+        .Navigation {
+          width: 100%;
+          margin-right: 0px;
+          background: url(./img/menu-bg1.png) repeat-x;
+        }
+
+        .Navigation li {
+          line-height: 62px;
+        }
+
+        .Navigation li a {
+          padding: 0px 21px;
+        }
+
+        .Navigation li.gap {
+          margin-left: 0px;
+        }
+
+        .Navigation li a span {
+          padding: 0 0px;
+        }
+
+        .Navigation li.gap a span {
+          padding: 0px;
+        }
+
+        .Navigation li.gap1 a span {
+          padding: 0px 10px 0px 0px;
+        }
+
+        .Navigation li:last-child a {
+          padding-right: 10px;
+        }
+
+        .Navigation li a:hover,
+        .Navigation li.active a {
+          background: #1f252e;
+          background-image: none;
+        }
+
+        .Navigation .triangle {
+          display: none;
+        }
+
+        .Navigation li a:hover span,
+        .Navigation li.active a span {
+          background: none;
+        }
+
+        .Product_sec {
+          width: 100%;
+          text-align: center;
+        }
+
+        .Product_sec li {
+          padding: 0px 0px 90px 0px;
+          margin: 0px;
+        }
+
+        .Product_sec li .right {
+          width: 100%;
+          float: none;
+        }
+
+        .Product_sec li .right .img {
+          margin: auto;
+          float: none;
+          padding-bottom: 30px;
+        }
+
+        .Product_sec li .right .Details h3 {
+          font-size: 22px;
+        }
+
+        .Product_sec li .right .Details {
+          width: 100%;
+          text-align: center;
+        }
+
+        .Product_sec li .right .Details p {
+          text-align: center;
+        }
+
+        .Product_sec li .Details a {
+          margin: auto;
+          float: none;
+        }
+
+        .Product_sec li .left {
+          width: 100%;
+          float: none;
+          padding-left: 0px;
+        }
+
+        .Product_sec li .left .img {
+          margin: auto;
+          float: none;
+          padding-bottom: 30px;
+        }
+
+        .Product_sec li .left .Details {
+          width: 100%;
+          text-align: center;
+        }
+
+        .Product_sec li .left .Details h3 {
+          font-size: 20px;
+        }
+
+        .Product_sec li .left .Details p {
+          text-align: center;
+        }
+
+        #Container {
+          width: 100%;
+        }
+
+        .Middle_sec {
+          width: 100%;
+          padding: 0px;
+          background: none;
+        }
+
+        .Middle_sec .Center {
+          width: 100%;
+        }
+
+        .Middle_sec #Leftside {
+          text-align: center;
+          padding: 0px 0px;
+          width: 100%;
+          float: none;
+          background: #222a35 url(./img/Client-left-bg.jpg) top center
+            no-repeat;
+        }
+
+        .Middle_sec #Leftside .Client {
+          margin: auto;
+          margin-top: 0px;
+          padding: 106px 65px 0px 65px;
+          width: 333px;
+          height: 333px;
+          background-size: 100%;
+        }
+
+        .Middle_sec #Leftside .Client2 {
+          margin: auto;
+          padding: 106px 65px 0px 65px;
+          width: 333px;
+          height: 333px;
+          background-size: 100%;
+        }
+
+        .Middle_sec #Leftside .Client1 {
+          margin: auto;
+          left: 0%;
+          top: 0px;
+          position: relative;
+          padding: 66px 65px 0px 65px;
+          width: 333px;
+          height: 333px;
+          background-size: 100%;
+        }
+
+        .Middle_sec #Rightside {
+          margin-top: -1px;
+          padding: 0px 6%;
+          width: 100%;
+          text-align: center;
+          float: none;
+          background: #2c3545;
+        }
+
+        .Middle_sec #Rightside li {
+          padding: 94px 0px;
+        }
+
+        .Middle_sec #Rightside li:last-child {
+          padding-bottom: 94px;
+        }
+
+        .Middle_sec #Rightside li .Industrial {
+          float: none;
+        }
+
+        .Middle_sec #Rightside li .Industrial img {
+          margin: auto;
+          padding-bottom: 30px;
+        }
+
+        .Middle_sec #Rightside li .Information {
+          width: 100%;
+          margin: auto;
+        }
+
+        .Middle_sec #Rightside li .Information li {
+          float: none;
+          display: inline-block;
+        }
+
+        .Contact_sec {
+          width: 100%;
+          padding: 0px;
+          background: none;
+          height: auto;
+        }
+
+        .Contact_sec .Center {
+          width: 100%;
+          padding: 0px 0% 0px 0%;
+        }
+
+        .Contact_sec .Center {
+          padding: 98px 6% 98px 6%;
+          width: 100%;
+          background: url(./img/contact-bg.png) top center no-repeat;
+          background-size: cover;
+          position: relative;
+          right: 0px;
+        }
+
+        .Contact_sec .Form {
+          position: relative;
+          right: 0%;
+          top: 0px;
+          width: 100%;
+        }
+
+        .Contact_sec .Form fieldset p {
+          margin: 0 0 8px;
+        }
+
+        .Contact_sec .Form input.field {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          padding: 0px 26px;
+        }
+
+        .Contact_sec .Form input.field1 {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          margin-left: 0px;
+          padding: 0px 26px;
+        }
+
+        .Contact_sec .Form textarea {
+          width: 100%;
+          background: #2a3241;
+          background-image: none;
+          margin-left: 0px;
+          padding: 20px 26px 10px 26px;
+        }
+
+        .Contact_sec .Form input.Button {
+          width: 100%;
+          background: #005a84 !important;
+          background-image: none !important;
+          border-radius: 0px !important;
+          margin-left: 0px;
+        }
+
+        .Contactside {
+          position: relative;
+          background: none;
+          height: auto;
+        }
+
+        footer {
+          width: 100%;
+        }
+
+        footer .Center {
+          width: 100%;
+          padding: 15px 2%;
+        }
+      }
+
+      @media only screen and (max-width: 1024px) {
+        .Navigation li {
+          width: 33.33%;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="DesignHolder">
+      <div class="LayoutFrame">
+        <header class="header">
+          <div class="Center">
+            <div class="Top_Bar">
+              <div class="site-logo">
+                <a href="#">
+                  <figure><img src="./img/logo.png" alt="Image" /></figure>
+                </a>
+              </div>
+              <nav class="Navigation">
+                <ul>
+                  <li class="active">
+                    <a href="#"><span>home</span></a>
+                  </li>
+                  <li class="gap">
+                    <a href="#About"><span>about</span></a>
+                  </li>
+                  <li class="gap gap1">
+                    <a href="#Contact"><span>contact</span></a>
+                  </li>
+                </ul>
+                <figure>
+                  <img
+                    src="./img/triangle-img.png"
+                    alt="Image"
+                    class="triangle"
+                  />
+                </figure>
+              </nav>
+              <div class="clear"></div>
+            </div>
+            <div class="Product_sec">
+              <ul>
+                <li>
+                  <div class="right">
+                    <div class="img">
+                      <figure>
+                        <img src="./img/camera-img.png" alt="Image" />
+                      </figure>
+                    </div>
+                    <div class="Details">
+                      <h3>Morbi accumsan AMET <span>ipsum dlolr ERA</span></h3>
+                      <p>
+                        The logo font is Britannic Bold and Adobe Fireworks PNG
+                        source file (img/logo_fireworks_source.png) is included.
+                        If you have any question about ZigZag template, feel
+                        free to
+                        <a href="#"
+                          >contact us</a
+                        >.
+                      </p>
+                      <a href="#" class="button">Learn more</a>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="left">
+                    <div class="img">
+                      <figure>
+                        <img src="./img/letter-img.png" alt="Image" />
+                      </figure>
+                    </div>
+                    <div class="Details">
+                      <h3>
+                        aenean sollication<span>lorem quis bibendum actor</span>
+                      </h3>
+                      <p>
+                        ZigZag is free HTML5 responsive template from
+                        <a
+                          rel="nofollow"
+                          href="#"
+                          >Templatemo</a
+                        >
+                        website. You can download, edit, and use this layout for
+                        any kind of your website. No credit link is required.
+                      </p>
+                      <a href="#" class="button">Learn more</a>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <a href="#About">
+              <figure>
+                <img src="./img/arrow-img.png" alt="Arrow" class="arrow" />
+              </figure>
+            </a>
+          </div>
+        </header>
+        <div id="Container">
+          <div class="Middle_sec" id="About">
+            <div class="Center">
+              <div id="Leftside">
+                <div class="Client">
+                  <figure>
+                    <a href="#"
+                      ><img
+                        src="./img/pic-img1.png"
+                        alt="Client 0"
+                        class="img-rounded"
+                    /></a>
+                  </figure>
+                  <h3>George</h3>
+                </div>
+                <div class="Client1">
+                  <figure>
+                    <a href="#"
+                      ><img src="./img/pic-img2.png" alt="Client 1"
+                    /></a>
+                  </figure>
+                  <p>
+                    “ Ribendum auctor<br />
+                    nisi elit conseq uat ipsum ”
+                  </p>
+                  <h3>David</h3>
+                </div>
+                <div class="Client2">
+                  <figure>
+                    <a href="#"
+                      ><img src="./img/pic-img3.png" alt="Client 2"
+                    /></a>
+                  </figure>
+                  <h3>Walker</h3>
+                </div>
+              </div>
+              <div id="Rightside">
+                <ul>
+                  <li>
+                    <div class="Industrial">
+                      <figure>
+                        <img src="./img/Industrial-img.png" alt="Image" />
+                      </figure>
+                    </div>
+                    <div class="Information">
+                      <h4>sollication <span>quis bibendum actor</span></h4>
+                      <p>
+                        Credit goes to <a>Art Professions Icon Set</a> from
+                        Smashing Magazine. Sed non mauris vitae erat doam
+                      </p>
+                      <ul>
+                        <li>
+                          <a href="https://www.facebook.com" target="_blank"
+                            ><i class="fab fa-facebook-f"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.twitter.com"
+                            target="_blank"
+                            aria-label="Twitter"
+                            ><i class="fab fa-twitter"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a href="#"><i class="fas fa-wifi"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="Industrial">
+                      <figure>
+                        <img src="./img/Industrial-img1.png" alt="Image" />
+                      </figure>
+                    </div>
+                    <div class="Information">
+                      <h4>Morbi accum<span>sednon mauris vieta</span></h4>
+                      <p>
+                        You can change the Google Maps location in core.js file
+                        by setting latitude and longitude values.
+                      </p>
+                      <ul>
+                        <li>
+                          <a href="https://www.facebook.com" target="_blank"
+                            ><i class="fab fa-facebook-f"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a
+                            href="https://www.twitter.com"
+                            target="_blank"
+                            aria-label="Twitter"
+                            ><i class="fab fa-twitter"></i
+                          ></a>
+                        </li>
+                        <li>
+                          <a href="#"><i class="fas fa-wifi"></i></a>
+                        </li>
+                      </ul>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="Contact_sec" id="Contact">
+            <div class="Contactside">
+              <div class="Center">
+                <div class="Form">
+                  <h3>contact <span>us</span></h3>
+                  <form method="post" action="#">
+                    <fieldset>
+                      <p>
+                        <input
+                          name="name"
+                          type="text"
+                          class="field"
+                          id="name"
+                          maxlength="50"
+                          placeholder="NAME"
+                        />
+                      </p>
+                      <p>
+                        <input
+                          name="email"
+                          type="email"
+                          class="field1"
+                          id="email"
+                          placeholder="EMAIL"
+                        />
+                      </p>
+                      <p>
+                        <textarea
+                          name="message"
+                          id="message"
+                          placeholder="MESSAGE"
+                        ></textarea>
+                      </p>
+                      <p>
+                        <input
+                          name="submit"
+                          type="submit"
+                          class="Button"
+                          id="submit"
+                          value="send"
+                        />
+                      </p>
+                    </fieldset>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer>
+          <div class="Center">
+            <p>Copyright © 2084 Your Company. Design:templatemo</p>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+</html>
